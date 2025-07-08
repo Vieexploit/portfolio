@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <base href="/portfolio/">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Portofolio Vieexploit, programmer pemula dengan minat pada keamanan siber dan reverse engineering.">
+  <meta name="keywords" content="vieexploit, keamanan siber, reverse engineering, web developer, portfolio">
+  <meta name="author" content="Vieexploit">
+  <link rel="icon" href="favicon.ico" />
+  <title>Vieexploit Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <img src="assets/logo.png" alt="Logo Vieexploit" class="logo" />
+    <nav>
+      <a href="#beranda">Beranda</a>
+      <a href="#tentang">Tentang Saya</a>
+      <a href="#skill">Skill</a>
+      <a href="#proyek">Proyek</a>
+      <a href="#kontak">Kontak</a>
+    </nav>
+  </header>
+
+  <section id="beranda" class="section">
+    <h1>Vieexploit</h1>
+    <p class="deskripsi">
+      I am the beginner and the start of something, I am the end and the finish of something.
+    </p>
+  </section>
+
+  <section id="tentang" class="section">
+    <h2>Tentang Saya</h2>
+    <p>Saya seorang programmer pemula dengan minat pada reverse engineering dan keamanan siber.</p>
+  </section>
+
+  <section id="skill" class="section">
+    <h2>Skill</h2>
+    <ul>
+      <li>Reverse Engineering / Keamanan Siber</li>
+      <li>Full Stack Developer</li>
+      <li>Meretas, Membuat Web, Mencari Bug, Memperbaiki</li>
+    </ul>
+  </section>
+
+  <section id="proyek" class="section">
+    <h2>Proyek</h2>
+    <div id="proyek-list">
+      <ul>
+        <li>🔧 Portfolio Website (HTML, CSS, JS)</li>
+        <li>🕵️ CTF Writeups - HackTheBox</li>
+      </ul>
+    </div>
+
+    <button id="editProyekBtn" style="display:none;">Edit Proyek</button>
+
+    <div id="editProyekContainer" style="display:none;">
+      <textarea id="editProyekText" rows="6" placeholder="Tambah atau edit daftar proyek di sini..."></textarea><br />
+      <button id="saveProyekBtn">Simpan</button>
+      <button id="cancelProyekBtn">Batal</button>
+    </div>
+  </section>
+
+  <section id="kontak" class="section">
+    <h2>Kontak</h2>
+    <ul class="kontak-list">
+      <!-- Konten kontak seperti sebelumnya (dipersingkat) -->
+    </ul>
+  </section>
+
+  <footer>
+    &copy; 2025 Vieexploit. All rights reserved.
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
