@@ -1,15 +1,128 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <base href="/portfolio/">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Portofolio Vieexploit, programmer pemula dengan minat pada keamanan siber dan reverse engineering.">
   <meta name="keywords" content="vieexploit, keamanan siber, reverse engineering, web developer, portfolio">
   <meta name="author" content="Vieexploit">
-  <link rel="icon" href="favicon.ico" />
   <title>Vieexploit Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Share Tech Mono', monospace;
+      background-color: #0a001a;
+      color: #a03eff;
+      line-height: 1.6;
+      background-image: radial-gradient(ellipse at center, #0a001a 0%, #000 100%);
+    }
+
+    header {
+      background-color: #120026;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #a03eff;
+    }
+
+    .logo {
+      max-height: 50px;
+      filter: drop-shadow(0 0 4px #a03eff);
+    }
+
+    nav a {
+      color: #a03eff;
+      text-decoration: none;
+      margin-left: 1rem;
+      font-weight: bold;
+      transition: color 0.2s ease-in-out;
+    }
+
+    nav a:hover {
+      color: #fff;
+    }
+
+    .section {
+      padding: 4rem 2rem;
+      max-width: 900px;
+      margin: auto;
+      background-color: rgba(20, 0, 40, 0.15);
+      border-left: 2px dashed #a03eff33;
+      border-right: 2px dashed #a03eff33;
+    }
+
+    h1, h2 {
+      color: #a03eff;
+      text-shadow: 0 0 2px #a03eff;
+      margin-bottom: 1rem;
+    }
+
+    p, li {
+      font-size: 1.1rem;
+      margin-bottom: 0.8rem;
+    }
+
+    ul {
+      padding-left: 1.2rem;
+    }
+
+    textarea, input, button {
+      background-color: #120e3d;
+      color: #a03eff;
+      font-family: 'Share Tech Mono', monospace;
+      border: 1px solid #a03eff;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      width: 100%;
+      max-width: 600px;
+      resize: vertical;
+    }
+
+    button {
+      cursor: pointer;
+      background-color: #1f003d;
+      border: 1px solid #a03eff;
+      color: #a03eff;
+      padding: 0.5rem 1rem;
+      font-weight: bold;
+      transition: background-color 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #290054;
+      color: #fff;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background-color: #120026;
+      color: #999;
+      margin-top: 2rem;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav a {
+        margin: 0.5rem 0;
+      }
+
+      .section {
+        padding: 2rem 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -65,7 +178,7 @@
   <section id="kontak" class="section">
     <h2>Kontak</h2>
     <ul class="kontak-list">
-      <!-- Konten kontak seperti sebelumnya (dipersingkat) -->
+      <!-- Tambahkan informasi kontak di sini -->
     </ul>
   </section>
 
@@ -73,6 +186,49 @@
     &copy; 2025 Vieexploit. All rights reserved.
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    const editBtn = document.getElementById('editProyekBtn');
+    const saveBtn = document.getElementById('saveProyekBtn');
+    const cancelBtn = document.getElementById('cancelProyekBtn');
+    const proyekList = document.getElementById('proyek-list');
+    const editContainer = document.getElementById('editProyekContainer');
+    const editText = document.getElementById('editProyekText');
+
+    const isAdmin = new URLSearchParams(window.location.search).get('admin') === 'true';
+    if (isAdmin) editBtn.style.display = 'inline-block';
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const saved = localStorage.getItem('proyekList');
+      if (saved) {
+        const lines = saved.split('\\n');
+        proyekList.innerHTML = '<ul>' + lines.map(line => `<li>${line}</li>`).join('') + '</ul>';
+      }
+    });
+
+    editBtn?.addEventListener('click', () => {
+      editText.value = proyekList.innerText.trim();
+      editContainer.style.display = 'block';
+      editBtn.style.display = 'none';
+    });
+
+    saveBtn?.addEventListener('click', () => {
+      const newText = editText.value.trim();
+      if (newText === "") {
+        proyekList.innerHTML = '<p>Belum ada proyek.</p>';
+        localStorage.removeItem('proyekList');
+      } else {
+        const lines = newText.split('\\n');
+        proyekList.innerHTML = '<ul>' + lines.map(line => `<li>${line}</li>`).join('') + '</ul>';
+        localStorage.setItem('proyekList', newText);
+      }
+      editContainer.style.display = 'none';
+      editBtn.style.display = 'inline-block';
+    });
+
+    cancelBtn?.addEventListener('click', () => {
+      editContainer.style.display = 'none';
+      editBtn.style.display = 'inline-block';
+    });
+  </script>
 </body>
 </html>
